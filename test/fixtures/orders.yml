@@ -1,0 +1,11 @@
+pending:
+  state: pending
+  control_number: 1
+
+in_progress:
+  state: in_progress
+  control_number: 2
+
+completed:
+  state: completed
+  control_number: 3
