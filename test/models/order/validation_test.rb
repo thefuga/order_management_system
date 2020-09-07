@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrderTest < ActiveSupport::TestCase
+class OrderValidationsTest < ActiveSupport::TestCase
   test "Valid orders" do
     Order::VALID_ORDER_STATES.each do |state|
       order = orders(state)
