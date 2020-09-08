@@ -1,0 +1,55 @@
+<h1> Orders </h1>
+
+<%= button_to 'Add order', '/orders/new', method: 'get' %>
+<%= button_to 'Clear filters', '/orders', method: 'get' %>
+
+<%= form_with url: '/orders', method: 'get', local: true do |form| %>
+  <%=
+    form.select :state, [
+      ["Pending", "pending"],
+      ["In Progress", "in_progress"],
+      ["Completed", "completed"]
+    ]
+  %>
+
+  <%= form.submit "Filter" %>
+<% end %>
+
+<%= form_with url: '/orders', method: 'get', local: true do |form| %>
+  <%= form.text_field 'control_number' %>
+  <%= form.submit 'Find' %>
+<% end %>
+
+
+<table>
+  <tr>
+    <th> Control number </th>
+    <th> State </th>
+    <th> Action </th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td> <%= order.control_number %> </td>
+      <td> <%= order.state %> </td>
+      <td>
+        <%=
+          button = case order.state
+            when 'pending'
+              button_to 'Start',
+                        "/orders/#{ order.id }",
+                        method: "patch",
+                        params: { to_state: 'start' }
+            when 'in_progress'
+              button_to 'Complete',
+                        "/orders/#{ order.id }",
+                        method: "patch",
+                        params: { to_state: 'complete' }
+            else
+              button_to 'Order completed!', {}, disabled: true
+            end
+          %>
+      </td>
+    </tr>
+  <% end %>
+</table>

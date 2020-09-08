@@ -1,0 +1,7 @@
+<h1> New order </h1>
+
+<%= form_with url: '/orders', method: 'post', local: true do |form| %>
+  <%= form.text_field 'order[control_number]' %>
+  <%= form.submit "Add new order" %>
+<% end %>
+

@@ -1,0 +1,9 @@
+<%= tag.h1 'Error creating the order' %>
+
+<% @order.errors.each do |attribute, message| %>
+  <ol>
+    <li> <%= "#{attribute}: #{message}" %> </li>
+  </ol>
+<% end %>
+
+<%= button_to 'Return', '/orders', method: 'get' %>
