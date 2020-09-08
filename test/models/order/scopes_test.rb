@@ -25,8 +25,8 @@ class OrderScopesTest < ActiveSupport::TestCase
   test "By Control number scope" do
     expected_order = orders(:pending)
 
-    found_order = Order.by_control_number(expected_order.control_number)
+    found_orders = Order.by_control_number(expected_order.control_number)
 
-    assert_equal expected_order, found_order
+    assert_equal expected_order, found_orders.first
   end
 end
